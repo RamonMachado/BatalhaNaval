@@ -29,6 +29,10 @@ public class TelaEscolher {
 	private double tabelaJogador[][];
 	private double tabelaIA[][];
 	JTextArea entradaCaminho;
+	private boolean temNavio = false;
+	private boolean temAviao = false;
+	private boolean temPorta = false;
+	private boolean temSubmarino = false;
 	
 	public TelaEscolher(Sistema s, boolean ale){
 		this.sistema = s;
@@ -308,6 +312,8 @@ public void criarLetrasNumeros(){
 	
 	//Método determina a posição do porta-navios no mapa
 	public void setPorta(double mapa[][], int x, int y){
+		
+		if(!temPorta){
 			mapa[x][y] = Navios.PORTA1.valor;
 			mapa[x+1][y] = Navios.PORTA2.valor;
 			mapa[x+2][y] = Navios.PORTA3.valor;
@@ -325,6 +331,8 @@ public void criarLetrasNumeros(){
 			icon = new ImageIcon(Tabuleiro.class.getResource("sprites/" + mapa[x+3][y] + ".png"));
 			botoes[x+3][y].setDisabledIcon(icon);
 			botoes[x+3][y].setEnabled(false);
+			temPorta = true;
+		}
 	}
 	
 	//Método verifica se o submarino pode ser posicionado ali
@@ -337,15 +345,18 @@ public void criarLetrasNumeros(){
 	
 	//Método determina a posição do submarino no mapa
 	public void setSubmarino(double mapa[][], int x, int y){
-		mapa[x][y] = Navios.SUBMARINO1.valor;
-		mapa[x+1][y] = Navios.SUBMARINO2.valor;
-		ImageIcon icon;
-		icon = new ImageIcon(Tabuleiro.class.getResource("sprites/" + mapa[x][y] + ".png"));
-		botoes[x][y].setDisabledIcon(icon);
-		botoes[x][y].setEnabled(false);
-		icon = new ImageIcon(Tabuleiro.class.getResource("sprites/" + mapa[x+1][y] + ".png"));
-		botoes[x+1][y].setDisabledIcon(icon);
-		botoes[x+1][y].setEnabled(false);
+		if(!temSubmarino){
+			mapa[x][y] = Navios.SUBMARINO1.valor;
+			mapa[x+1][y] = Navios.SUBMARINO2.valor;
+			ImageIcon icon;
+			icon = new ImageIcon(Tabuleiro.class.getResource("sprites/" + mapa[x][y] + ".png"));
+			botoes[x][y].setDisabledIcon(icon);
+			botoes[x][y].setEnabled(false);
+			icon = new ImageIcon(Tabuleiro.class.getResource("sprites/" + mapa[x+1][y] + ".png"));
+			botoes[x+1][y].setDisabledIcon(icon);
+			botoes[x+1][y].setEnabled(false);
+			temSubmarino = true;
+		}
 	}
 	
 	//Método verifica se o aviao pode ser posicionado ali
@@ -358,15 +369,19 @@ public void criarLetrasNumeros(){
 	
 	//Método determina a posição do aviao no mapa
 	public void setAviao(double mapa[][], int x, int y){
-		mapa[x][y] = Navios.AVIAO1.valor;
-		mapa[x+1][y] = Navios.AVIAO2.valor;
-		ImageIcon icon;
-		icon = new ImageIcon(Tabuleiro.class.getResource("sprites/" + mapa[x][y] + ".png"));
-		botoes[x][y].setDisabledIcon(icon);
-		botoes[x][y].setEnabled(false);
-		icon = new ImageIcon(Tabuleiro.class.getResource("sprites/" + mapa[x+1][y] + ".png"));
-		botoes[x+1][y].setDisabledIcon(icon);
-		botoes[x+1][y].setEnabled(false);
+		
+		if(!temAviao){
+			mapa[x][y] = Navios.AVIAO1.valor;
+			mapa[x+1][y] = Navios.AVIAO2.valor;
+			ImageIcon icon;
+			icon = new ImageIcon(Tabuleiro.class.getResource("sprites/" + mapa[x][y] + ".png"));
+			botoes[x][y].setDisabledIcon(icon);
+			botoes[x][y].setEnabled(false);
+			icon = new ImageIcon(Tabuleiro.class.getResource("sprites/" + mapa[x+1][y] + ".png"));
+			botoes[x+1][y].setDisabledIcon(icon);
+			botoes[x+1][y].setEnabled(false);
+			temAviao = true;
+		}
 	}
 	
 	//Método verifica se o navio pode ser posicionado ali
@@ -379,6 +394,8 @@ public void criarLetrasNumeros(){
 	
 	//Método determina a posição do navio no mapa
 	public void setNavio(double mapa[][], int x, int y){
+		
+		if(!temNavio){
 			mapa[x][y] = Navios.NAVIO1.valor;
 			mapa[x+1][y] = Navios.NAVIO2.valor;
 			mapa[x+2][y] = Navios.NAVIO3.valor;
@@ -392,6 +409,8 @@ public void criarLetrasNumeros(){
 			icon = new ImageIcon(Tabuleiro.class.getResource("sprites/" + mapa[x+2][y] + ".png"));
 			botoes[x+2][y].setDisabledIcon(icon);
 			botoes[x+2][y].setEnabled(false);
+			temNavio = true;
+		}
 	}
 
 	//Método sorteia as posições dos navios aleatoriamente e retorna um mapa
